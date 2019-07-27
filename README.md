@@ -26,13 +26,6 @@ Tlou Lebelo u15209190 <br>
 
 |Team Member | Details | 
 | :---         | :---         |  
-|**Oluwatosin Botti**|**u13208642** |
-|**Profile** |<a href="https://github.com/olwabott" target="_blank">Github</a>|
-|**Overview**|I&#39;m a determined individual who works hard and is always willing to learn. |
-|**Position** |Final year BSc IT|
-|**Interests** |Creating Websites, Reading...novels, Cooking, Eating and Gaming|
-|**Skills**|C++, C#, Java, Web Development: HTML, CSS, Bootstrap, JavaScript, PHP, AJAX, JQuery, JSON, SQL, Mongo DB|
-|       |
 |**Tlou Lebelo**|**u15209190** |
 |**Profile** |<a href="https://github.com/Kgatishi" target="_blank">Github</a>|
 |**Overview**|I am friendly person always willing to learn new stuff including new ideas and intelligence brought by others. |
