@@ -140,7 +140,8 @@ export default class App extends Component {
 
     calculateRate = () => {
         rate = 0.90 ; //R0.90 per kilometer
-        rate *= ( this.state.Distance !== 0 ) ? this.state.Distance : this.calculateDistance() ;
+        //rate *= ( this.state.Distance !== 0 ) ? this.state.Distance : this.calculateDistance() ;
+        rate *= this.state.Distance ;
         this.setState({
             Cost: rate,
         });
@@ -151,35 +152,34 @@ export default class App extends Component {
         const { loading, location, updatesEnabled } = this.state;
         return (
             <View>
-               
-                <View style={styles.buttons}>
-                    <TouchableHighlight 
-                        style={[styles.buttonContainer, styles.FuelClaim]}
-                        //title='Start Observing' 
-                        onPress={this.getLocationUpdates} 
-                        disabled={updatesEnabled} 
-                    >
-                        <Text style={styles.FuelClaimText}>Start Observing</Text> 
-                    </TouchableHighlight>
-                    
-                    <TouchableHighlight 
-                        style={[styles.buttonContainer, styles.FuelClaim]}
-                        //title='Stop Observing' 
-                        onPress={this.removeLocationUpdates} 
-                        disabled={!updatesEnabled} 
-                    >
-                        <Text style={styles.FuelClaimText}>Stop Observing</Text>
-                    </TouchableHighlight>
-                </View>
-
-                <View style={styles.result}>
-                    <Text>{JSON.stringify(location, null, 4)}</Text>
-                </View>
 
                 <View style={styles.costPerDist}>
                     <Text > Distance:{this.state.Distance} (km) </Text>
                     <Text > Cost: R{this.state.Cost} </Text>
                 </View>
+
+                <View style={styles.buttons}>
+                    { ( !updatesEnabled ) ? (
+                        <TouchableHighlight 
+                            style={[styles.buttonContainer, styles.FuelClaim]}
+                            //title='Start Observing' 
+                            onPress={this.getLocationUpdates} 
+                            disabled={updatesEnabled} 
+                        >
+                            <Text style={styles.FuelClaimText}>Start Observing</Text> 
+                        </TouchableHighlight>
+                    ):(
+                        <TouchableHighlight 
+                            style={[styles.buttonContainer, styles.FuelClaim]}
+                            //title='Stop Observing' 
+                            onPress={this.removeLocationUpdates} 
+                            disabled={!updatesEnabled} 
+                        >
+                            <Text style={styles.FuelClaimText}>Stop Observing</Text>
+                        </TouchableHighlight>
+                    )}
+                </View>
+
             </View>
         );
     }
@@ -222,8 +222,12 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     costPerDist: {
+        justifyContent: 'center',
+        alignItems: 'center',
         color: '#239B56',
         borderWidth: 1,
-        borderColor: '#6C3483'
+        borderColor: '#6C3483',
+        width:200,
+        
     }
 });

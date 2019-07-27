@@ -8,7 +8,7 @@
 
 import React, {Component} from 'react';
 import {View, TouchableOpacity, ImageBackground, Text, TouchableHighlight, StyleSheet} from 'react-native';
-import style, {screenHeight, screenWidth} from "../styles";
+import style, {screenHeight, screenWidth} from "../../styles";
 import {RNCamera as Camera} from "react-native-camera";
 import RNTextDetector from "react-native-text-detector";
 
@@ -246,7 +246,7 @@ export default class OCR extends Component<Props> {
         if( claim === "fuel" ){
             this.props.navigation.navigate('Output', { odometer: this.state.odometer})
         }else{
-            this.props.navigation.navigate('Output', { total: this.state.total, date: this.state.date})
+            this.props.navigation.navigate('Output', { total: this.state.total, date: this.state.date, text: textString})
         }
         this.props.navigation.navigate('Output', { total: this.state.total, date: this.state.date})
     }

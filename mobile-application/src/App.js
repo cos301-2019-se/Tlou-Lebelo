@@ -13,6 +13,7 @@ import FUELCLAIM from './pages/fuelClaim' ;
 import MISCCLAIM from './pages/miscClaim' ;
 import OCR from './ocr/OCR';
 import Output from './ocr/Output';
+import SETTINGS from './pages/settings' ;
 
 
 const App = createStackNavigator({
@@ -60,6 +61,23 @@ const App = createStackNavigator({
             headerTintColor: '#ffffff',
         },
     },
-});
+
+    SETTINGS: {
+        screen: SETTINGS,
+        navigationOptions: {
+            title: 'Settings',
+            headerStyle: {backgroundColor: '#8AD32E'},
+            headerTintColor: '#ffffff',
+        },
+    },
+
+},
+    {
+        headerMode: 'none',
+        navigationOptions: {
+          headerVisible: false,
+        }
+    }
+);
 
 export default createAppContainer(App);

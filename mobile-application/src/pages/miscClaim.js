@@ -7,7 +7,8 @@ import {
     Button,
     TouchableHighlight,
     Image,
-    Alert
+    Alert,
+    Picker
 } from 'react-native';
 //import GpsLocationTracker from '../gps/GpsLocationTracker' ;
 
@@ -17,8 +18,8 @@ export default class LoginView extends Component {
         super(props);
         this.state = {
             tracker: false,
-            date: 0,
-            total: 0,
+            date: "0",
+            total: "0",
             purpose: "Food",
         }
     }
@@ -42,20 +43,12 @@ export default class LoginView extends Component {
             </View>    
 
             <View style={styles.inputContainer}>
-                <TextInput style={styles.inputs}
-                    placeholder="kilometers"
-                    keyboardType="phone-pad"
-                    underlineColorAndroid='transparent'
-                    onChangeText={(kmBefore) => this.setState({kmBefore})}/>
-            </View>
-
-            <View style={styles.inputContainer}>
                 <Text>Date:</Text>
                 <TextInput style={styles.inputs}
                     placeholder={ this.state.date }
                     keyboardType="default"
                     underlineColorAndroid='transparent'
-                    onChangeText={(name) => this.setState({name})}
+                    onChangeText={(date) => this.setState({date})}
                 />
             </View>
             
@@ -65,7 +58,7 @@ export default class LoginView extends Component {
                     placeholder={ this.state.total }
                     keyboardType="default"
                     underlineColorAndroid='transparent'
-                    onChangeText={(name) => this.setState({name})}
+                    onChangeText={(total) => this.setState({total: this.state.total+total})}
                 />
             </View>
 
@@ -108,8 +101,8 @@ const styles = StyleSheet.create({
       backgroundColor: '#FFFFFF',
       borderRadius:30,
       borderBottomWidth: 1,
-      width:250,
-      height:45,
+      width:270,
+      height:70,
       marginBottom:20,
       flexDirection: 'row',
       alignItems:'center'
@@ -121,8 +114,8 @@ const styles = StyleSheet.create({
       flex:1,
   },
   inputIcon:{
-    width:30,
-    height:30,
+    width:100,
+    height:100,
     marginLeft:15,
     justifyContent: 'center'
   },

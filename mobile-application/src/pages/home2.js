@@ -40,31 +40,31 @@ export default class LoginView extends Component {
   render() {
     return (
         <View style={styles.container}>
-
-            <TouchableHighlight 
-                style={styles.buttonContainer}
-                onPress={() => this.onMiscClaimClickListener('fuelClaim')}
-            >
-                <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/check/ultraviolet/100/3498db'}}/>
-            </TouchableHighlight>
-        
-            {/*!this.state.tracker ?(
-            <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => this.onRegisterClickListener('start')}>
-                <Text style={styles.loginText}>start</Text>
-            </TouchableHighlight>
-            ):(
-            <TouchableHighlight style={styles.buttonContainer} onPress={() => this.onRegisterClickListener('end')}>
-                <Text>end</Text>
-            </TouchableHighlight>
-            )*/}
-        
-            <TouchableHighlight 
-                style={styles.buttonContainer}
-                onPress={() => this.onFuelClaimClickListener('miscellaneous')}
-            >
-                <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/gas-station/ultraviolet/100/3498db'}}/>
-            </TouchableHighlight>
-
+            <View style={styles.buttons}>
+                <TouchableHighlight 
+                    style={styles.buttonContainer}
+                    onPress={() => this.onMiscClaimClickListener('fuelClaim')}
+                >
+                    <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/check/ultraviolet/100/3498db'}}/>
+                </TouchableHighlight>
+            
+                {/*!this.state.tracker ?(
+                <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => this.onRegisterClickListener('start')}>
+                    <Text style={styles.loginText}>start</Text>
+                </TouchableHighlight>
+                ):(
+                <TouchableHighlight style={styles.buttonContainer} onPress={() => this.onRegisterClickListener('end')}>
+                    <Text>end</Text>
+                </TouchableHighlight>
+                )*/}
+            
+                <TouchableHighlight 
+                    style={styles.buttonContainer}
+                    onPress={() => this.onFuelClaimClickListener('miscellaneous')}
+                >
+                    <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/gas-station/ultraviolet/100/3498db'}}/>
+                </TouchableHighlight>
+            </View>
         </View>
     );
   }
@@ -95,24 +95,33 @@ const styles = StyleSheet.create({
       flex:1,
   },
   inputIcon:{
-    width:30,
-    height:30,
-    marginLeft:15,
+    width:50,
+    height:50,
+    //marginLeft:15,
+    alignItems:'center',
     justifyContent: 'center'
   },
   buttonContainer: {
-    height:45,
+    height:90,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom:20,
-    width:250,
-    borderRadius:30,
+    width:90,
+    borderRadius:45,
+    backgroundColor: "#00FFFF",
   },
   loginButton: {
     backgroundColor: "#8AD32E",
   },
   loginText: {
     color: 'white',
-  }
+  },
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginVertical: 12,
+    width: '100%'
+    }
 });

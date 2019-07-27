@@ -62,8 +62,9 @@ export default class LoginView extends Component {
                 underlineColorAndroid='transparent'
                 onChangeText={(kmBefore) => this.setState({kmBefore})}/>
         </View>
-        
-        <GpsLocationTracker/>
+        <View style={styles.gpsui}>
+            <GpsLocationTracker/>
+        </View>
         
         <View style={styles.inputContainer}>
             <TouchableHighlight onPress={() => this.onLoginClickListener('ocr')}>
@@ -126,5 +127,16 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: 'white',
-  }
+  },
+  gpsui: {
+    borderBottomColor: '#F5FCFF',
+    backgroundColor: '#FFFFFF',
+    //borderRadius:30,
+    borderBottomWidth: 1,
+    width:250,
+    height:150,
+    marginBottom:20,
+    flexDirection: 'row',
+    alignItems:'center'
+},
 });
