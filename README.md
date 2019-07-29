@@ -1,4 +1,4 @@
-# Sodalicium_Capstone
+# Tlou-Lebelo
 
 **Project Overview**
 
