@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, List, ListItem, Text, Icon, Left, Body, Right, Switch, Picker, Button } from 'native-base';
+import { 
+    Container, Header, Content, List, ListItem, Text, Icon, Left, Body, Right, Switch, Picker, Button, Title 
+} from 'native-base';
 
 
 export default class ListDividerExample extends Component {
@@ -9,6 +11,10 @@ export default class ListDividerExample extends Component {
         this.state = {
             selected: "key1"
         };
+    }
+
+    onBackClick = () => {
+        this.props.navigation.navigate('HOME')
     }
 
     onEmailUpdateClick = () => {
@@ -24,7 +30,16 @@ export default class ListDividerExample extends Component {
     render() {
         return (
             <Container>
-                <Header />
+                <Header>
+                    <Left>
+                        <Button transparent onPress={() => this.onBackClick()}>
+                            <Icon name='arrow-back' />
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Title>Settings </Title>
+                    </Body>
+                </Header>
                 <Content>
                     <List>
 
@@ -60,7 +75,7 @@ export default class ListDividerExample extends Component {
                         </ListItem>
                         <ListItem>
                             <Body> 
-                                <Text> address@email.com </Text> 
+                                <Text> Submit </Text> 
                             </Body>
                             <Right>
                                 <Picker
@@ -79,9 +94,6 @@ export default class ListDividerExample extends Component {
                         </ListItem>
                         <ListItem>
                             <Text>Time</Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text>Ali Connors</Text>
                         </ListItem>
 
                         <ListItem itemDivider>

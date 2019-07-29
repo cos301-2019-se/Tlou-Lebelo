@@ -1,142 +1,112 @@
-import React, { Component } from 'react';
-import {
-    StyleSheet,
-    Text,
-    View,
-    TextInput,
-    Button,
-    TouchableHighlight,
-    Image,
-    Alert
-} from 'react-native';
-import GpsLocationTracker from '../gps/GpsLocationTracker' ;
+import React, { Component } from "react";
+import { 
+    Container, Header, Content, Card, CardItem, Text, Body, Left, Right, Button, Icon, Title, Form, Item, Input, Label, Thumbnail, Image
+} from "native-base";
+import GpsLocationTracker from '../gps/GpsLocationTracker';
 
-export default class LoginView extends Component {
+export default class CardItemBordered extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             tracker: false,
-            email   : '',
-            password: '',
-            kmBefore: 0,
-            kmAfter: 0,
+            date: "0",
+            total: "0",
+            Distance: 0,
+            odometer: require('../images/odometer.jpg'),
         }
     }
 
-    onLoginClickListener = (ocr) => {
-        this.props.navigation.navigate('OCR', { claim: "fuel" })
+    onBackClick = () => {
+        this.props.navigation.navigate('HOME')
     }
-    
-    onRegisterClickListener = (start) => {
-        //this.props.navigation.navigate('Register')
-        if( start == "start" ){
-            this.setState({
-                tracker: true
-            });
-        }else{
-            this.setState({
-                tracker: false
-            });
-        }
+
+    onRefreshClick = () => {
+        alert("Refresh")
     }
-    /*onRegisterClickListener = (end) => {
-        //this.props.navigation.navigate('Register')
-        this.setState({
-            tracker: false
-        });
-    }*/
 
-  render() {
-    return (
-      <View style={styles.container}>
+    render() {
+        return (
 
-        <View style={styles.inputContainer}>
-            <TouchableHighlight onPress={() => this.onLoginClickListener('ocr')}>
-                <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/camera/ultraviolet/50/3498db'}}/>
-            </TouchableHighlight>
+            <Container>
+                
+                <Header>
+                    <Left>
+                        <Button transparent onPress={() => this.onBackClick()}>
+                            <Icon name='arrow-back' />
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Title>Retro </Title>
+                    </Body>
+                </Header>
 
-            <TextInput style={styles.inputs}
-                placeholder="kilometers"
-                keyboardType="decimal-pad"
-                underlineColorAndroid='transparent'
-                onChangeText={(kmBefore) => this.setState({kmBefore})}/>
-        </View>
-        <View style={styles.gpsui}>
-            <GpsLocationTracker/>
-        </View>
-        
-        <View style={styles.inputContainer}>
-            <TouchableHighlight onPress={() => this.onLoginClickListener('ocr')}>
-                <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/camera/ultraviolet/50/3498db'}}/>
-            </TouchableHighlight>
+                <Card>
+                    <CardItem header bordered>
+                        <Left>
+                            <Button transparent>
+                                <Icon active name="car" />
+                                <Text> Fuel Claim</Text>
+                                <Text note> Moday 15 August '19  </Text>
+                            </Button>
+                        </Left>
+                    </CardItem>
 
-            <TextInput style={styles.inputs}
-                placeholder="kolometers"
-                keyboardType="decimal-pad"
-                underlineColorAndroid='transparent'
-                onChangeText={(kmAfter) => this.setState({kmAfter})}/>
-        </View>
+                    <CardItem bordered>
+                        <Left>
+                            <Thumbnail source={this.state.odometer} />
+                        </Left>
+                        <Body>
+                            <Form>
+                                <Item inlineLabel last>
+                                    <Label>Distance</Label>
+                                    <Input />
+                                </Item>
+                            </Form>
+                        </Body>
+                        <Right>
+                            <Button transparent>
+                                <Icon active name="camera" />
+                            </Button>   
+                        </Right>
+                    </CardItem>
+                    <CardItem bordered>
+                        <GpsLocationTracker/>
+                    </CardItem>
+                    <CardItem bordered>
+                        <Left>
+                            <Thumbnail source={this.state.odometer} />
+                        </Left>
+                        <Body>
+                            <Form>
+                                <Item inlineLabel last>
+                                    <Label>Distance</Label>
+                                    <Input />
+                                </Item>
+                            </Form>
+                        </Body>
+                        <Right>
+                            <Button transparent>
+                                <Icon active name="camera" /> 
+                            </Button>   
+                        </Right>
+                    </CardItem>
 
-      </View>
-    );
-  }
+                    <CardItem footer bordered>
+                        <Left>
+                            <Button onPress={() => this.onRefreshClick()} >
+                                <Icon active name="refresh" />
+                            </Button>
+                        </Left>
+                        <Right>
+                            <Button success onPress={() => alert("Confirm your request to submit a claim")}>
+                                <Text>save</Text>
+                            </Button>
+                        </Right>
+                    </CardItem>
+                </Card>
+                
+            </Container>
+        );
+    }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#DCDCDC',
-  },
-  inputContainer: {
-      borderBottomColor: '#F5FCFF',
-      backgroundColor: '#FFFFFF',
-      borderRadius:30,
-      borderBottomWidth: 1,
-      width:250,
-      height:45,
-      marginBottom:20,
-      flexDirection: 'row',
-      alignItems:'center'
-  },
-  inputs:{
-      height:45,
-      marginLeft:16,
-      borderBottomColor: '#FFFFFF',
-      flex:1,
-  },
-  inputIcon:{
-    width:30,
-    height:30,
-    marginLeft:15,
-    justifyContent: 'center'
-  },
-  buttonContainer: {
-    height:45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom:20,
-    width:250,
-    borderRadius:30,
-  },
-  loginButton: {
-    backgroundColor: "#8AD32E",
-  },
-  loginText: {
-    color: 'white',
-  },
-  gpsui: {
-    borderBottomColor: '#F5FCFF',
-    backgroundColor: '#FFFFFF',
-    //borderRadius:30,
-    borderBottomWidth: 1,
-    width:250,
-    height:150,
-    marginBottom:20,
-    flexDirection: 'row',
-    alignItems:'center'
-},
-});

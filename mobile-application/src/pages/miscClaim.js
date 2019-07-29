@@ -1,18 +1,12 @@
-import React, { Component } from 'react';
-import {
-    StyleSheet,
-    Text,
-    View,
-    TextInput,
-    Button,
-    TouchableHighlight,
-    Image,
-    Alert,
-    Picker
-} from 'react-native';
-//import GpsLocationTracker from '../gps/GpsLocationTracker' ;
+import React, { Component } from "react";
+import { 
+    Container, Header, Content, Card, CardItem, Text, Body, Left, Right, Button, Icon, Title, Form, Item, Input, Label, Picker, Image
+} from "native-base";
+//import { Image, TouchableHighlight } from "react-native";
+//import myurl from '../images/receipt.jpg';
 
-export default class LoginView extends Component {
+
+export default class CardItemBordered extends Component {
 
     constructor(props) {
         super(props);
@@ -21,117 +15,96 @@ export default class LoginView extends Component {
             date: "0",
             total: "0",
             purpose: "Food",
+            receipt: require('../images/receipt.jpg'),
         }
     }
 
-    onClickListener = (ocr) => {
-        this.props.navigation.navigate('OCR', { claim: "miscellaneous" } )
-    }
-    
-    onSubmitClickListener = (submit) => {
+    onBackClick = () => {
         this.props.navigation.navigate('HOME')
     }
 
+    onRefreshClick = () => {
+        alert("Refresh")
+    }
+
     render() {
-    return (
-        <View style={styles.container}>
+        return (
 
-            <View>
-                <TouchableHighlight onPress={() => this.onClickListener('ocr')}>
-                    <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/camera/ultraviolet/100/3498db'}}/>
-                </TouchableHighlight>
-            </View>    
+            <Container>
+                
+                <Header>
+                    <Left>
+                        <Button transparent onPress={() => this.onBackClick()}>
+                            <Icon name='arrow-back' />
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Title>Retro </Title>
+                    </Body>
+                </Header>
 
-            <View style={styles.inputContainer}>
-                <Text>Date:</Text>
-                <TextInput style={styles.inputs}
-                    placeholder={ this.state.date }
-                    keyboardType="default"
-                    underlineColorAndroid='transparent'
-                    onChangeText={(date) => this.setState({date})}
-                />
-            </View>
-            
-            <View style={styles.inputContainer}>
-                <Text>Total: R</Text>
-                <TextInput style={styles.inputs}
-                    placeholder={ this.state.total }
-                    keyboardType="default"
-                    underlineColorAndroid='transparent'
-                    onChangeText={(total) => this.setState({total: this.state.total+total})}
-                />
-            </View>
+                <Card>
+                    <CardItem header bordered>
+                        <Left>
+                            <Button transparent>
+                                <Icon active name="car" />
+                                <Text> Fuel Claim </Text>  
+                            </Button>
+                        </Left>
+                    </CardItem>
 
-            <View style={styles.inputContainer}>
-                <Text>Reason: </Text>
-                <Picker
-                    selectedValue={this.state.purpose}
-                    style={{height: 50, width: 100}}
-                    onValueChange={(itemValue, itemIndex) =>
-                        this.setState({purpose: itemValue})
-                }>
-                    <Picker.Item label="Food" value="Food" />
-                    <Picker.Item label="Travel" value="Travel" />
-                    <Picker.Item label="Stationary" value="Stationary" />
-                    <Picker.Item label="Other" value="Other" />
-                </Picker>
-            </View>
 
-            <TouchableHighlight 
-                style={[styles.buttonContainer, styles.loginButton]} 
-                onPress={() => this.onSubmitClickListener('submit')}
-            >
-                <Text style={styles.loginText}>submit</Text>
-            </TouchableHighlight>
+                    <CardItem bordered>
+                        <Body>
+                            <Image source={this.state.receipt} style={{height: 200, width: null, flex: 1}}/>
+                            <Button block info>
+                                <Icon active name="camera" /> 
+                            </Button>
+                            <Form>
+                                <Item FloatLabelTextInput >
+                                    <Label>Date</Label>
+                                    <Input />
+                                </Item>
+                                <Item FloatLabelTextInput >
+                                    <Label>Total R</Label>
+                                    <Input />
+                                </Item>
+                                <Item FloatLabelTextInput >
+                                    <Picker
+                                        mode="dropdown"
+                                        Header="Select Time"
+                                        Icon={<Icon name="arrow-down" />}
+                                        style={{ width: undefined }}
+                                        selectedValue={this.state.purpose}
+                                        onValueChange={(itemValue, itemIndex) =>
+                                            this.setState({purpose: itemValue})
+                                    }>
+                                        <Picker.Item label="Food" value="Food" />
+                                        <Picker.Item label="Travel" value="Travel" />
+                                        <Picker.Item label="Stationary" value="Stationary" />
+                                        <Picker.Item label="Other" value="Other" />
+                                    </Picker>
+                                </Item>
+                            </Form>
+                        </Body>
+                    </CardItem>
+                    
 
-        </View>
+                    <CardItem footer bordered>
+                        <Left>
+                            <Button onPress={() => this.onRefreshClick()} >
+                                <Icon active name="refresh" />
+                            </Button>
+                        </Left>
+                        <Right>
+                            <Button success onPress={() => alert("Confirm your request to submit a claim")}>
+                                <Text>save</Text>
+                            </Button>
+                        </Right>
+                    </CardItem>
+                </Card>
+                
+            </Container>
         );
     }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#DCDCDC',
-  },
-  inputContainer: {
-      borderBottomColor: '#F5FCFF',
-      backgroundColor: '#FFFFFF',
-      borderRadius:30,
-      borderBottomWidth: 1,
-      width:270,
-      height:70,
-      marginBottom:20,
-      flexDirection: 'row',
-      alignItems:'center'
-  },
-  inputs:{
-      height:45,
-      marginLeft:16,
-      borderBottomColor: '#FFFFFF',
-      flex:1,
-  },
-  inputIcon:{
-    width:100,
-    height:100,
-    marginLeft:15,
-    justifyContent: 'center'
-  },
-  buttonContainer: {
-    height:45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom:20,
-    width:250,
-    borderRadius:30,
-  },
-  loginButton: {
-    backgroundColor: "#8AD32E",
-  },
-  loginText: {
-    color: 'white',
-  }
-});

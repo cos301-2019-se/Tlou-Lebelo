@@ -7,6 +7,14 @@ export default class CardItemBordered extends Component {
         this.props.navigation.navigate('SETTINGS')
     }
 
+    onFuelClick = () => {
+        this.props.navigation.navigate('FUELCLAIM')
+    }
+
+    onMiscClick = () => {
+        this.props.navigation.navigate('MISCCLAIM')
+    }
+
     render() {
         return (
 
@@ -15,7 +23,7 @@ export default class CardItemBordered extends Component {
                 <Header>
                     <Left>
                         <Button transparent>
-                            <Icon name='arrow-back' />
+                            <Icon name='grid' />
                         </Button>
                     </Left>
                     <Body>
@@ -36,6 +44,7 @@ export default class CardItemBordered extends Component {
                                 <Text>13</Text>
                             </Button>
                         </Left>
+                        
                         <Right>
                             <Button transparent>
                                 <Icon active name="pizza" />
@@ -51,17 +60,38 @@ export default class CardItemBordered extends Component {
                     </CardItem>
                     <CardItem footer bordered>
                         <Left>
-                            <Button onPress={() => alert("View Records")} >
+                            <Button onPress={() => alert("View Claims Record!")} >
                                 <Text>view</Text>
                             </Button>
                         </Left>
                         <Right>
-                            <Button onPress={() => alert("Confirm your request to submit a claim")}>
+                            <Button success onPress={() => alert("Confirm your request to submit your claims!")}>
                                 <Icon active name="thumbs-up" />
                                 <Text>submit</Text>
                             </Button>
                         </Right>
                     </CardItem>
+                </Card>
+
+                <Card>
+                    <CardItem bordered header style={{alignItems: 'center',justifyContent: 'center'}}>
+                        <Text>Record New Claim</Text>
+                    </CardItem>
+                    <CardItem bordered>
+                        <Left>
+                            <Button rounded light onPress={() => this.onFuelClick()}>
+                                <Icon active name="car" />
+                                <Text>Fuel</Text>
+                            </Button>
+                        </Left>
+                        <Right>
+                            <Button rounded info onPress={() => this.onMiscClick()}>
+                                <Icon active name="pizza" />
+                                <Text>Misc</Text> 
+                            </Button>   
+                        </Right>
+                    </CardItem>
+                    
                 </Card>
                 
             </Container>
