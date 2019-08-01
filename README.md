@@ -1,4 +1,4 @@
-# Sodalicium_Capstone
+# Tlou-Lebelo
 
 **Project Overview**
 
@@ -21,7 +21,6 @@ The image scanner will extract the relevant information from the scanned image, 
 
 **Team Members**
 
-Oluwatosin Botti u13208642 <br>
 Tlou Lebelo u15209190 <br>
 
 |Team Member | Details | 
