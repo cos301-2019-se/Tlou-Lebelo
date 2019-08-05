@@ -1,4 +1,6 @@
 import db from '../db/dbClaims';
+import dbtravel from '../db/dbTravel'
+import dbpersonal from '../db/dbPersonal'
 
 class ClaimsController {
 
@@ -7,19 +9,19 @@ class ClaimsController {
         return res.status(200).send({
             success: 'true',
             message: 'todos retrieved successfully',
-            todos: db,
+            claims: db,
         });
     }
 
-    //1.2. Get specific todo using id  
+    //1.2. Get specific claim using id  
     getClaim(req, res) {
         const id = parseInt(req.params.id, 10);
-        db.map((todo) => {
-        if (todo.id === id) {
+        db.map((claim) => {
+        if (claim.id === id) {
             return res.status(200).send({
                 success: 'true',
-                message: 'todo retrieved successfully',
-                todo,
+                message: 'claim retrieved successfully',
+                claim,
             });
         }
         });
@@ -30,7 +32,7 @@ class ClaimsController {
     }
 
 
-    //2. Post data to todos (New Database entry)
+    //2. Post data to claims (New Database entry)
     createClaim(req, res) {
         if (!req.body.title) {
             return res.status(400).send({

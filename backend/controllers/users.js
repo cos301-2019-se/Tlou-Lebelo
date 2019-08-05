@@ -6,126 +6,163 @@ class UsersController {
     getAllUsers(req, res) {
         return res.status(200).send({
             success: 'true',
-            message: 'todos retrieved successfully',
-            todos: db,
+            message: 'users retrieved successfully',
+            users: db,
         });
     }
 
-    //1.2. Get specific todo using id  
+    //1.2. Get specific user using id  
     getUser(req, res) {
         const id = parseInt(req.params.id, 10);
-        db.map((todo) => {
-        if (todo.id === id) {
+        db.map((users) => {
+        if (users.userid === id) {
             return res.status(200).send({
                 success: 'true',
-                message: 'todo retrieved successfully',
-                todo,
+                message: 'user retrieved successfully',
+                users,
             });
         }
         });
         return res.status(404).send({
             success: 'false',
-            message: 'todo does not exist',
+            message: 'user does not exist',
         });
     }
 
 
-    //2. Post data to todos (New Database entry)
+    //2. Create new user (New Database entry)
     createUser(req, res) {
-        if (!req.body.title) {
+        if (!req.body.email) {
+            return res.status(400).send({
+                success: 'false',
+                message: 'email is required',
+            });
+        } else if (!req.body.title) {
             return res.status(400).send({
                 success: 'false',
                 message: 'title is required',
             });
-        } else if (!req.body.description) {
+        }else if (!req.body.name) {
             return res.status(400).send({
                 success: 'false',
-                message: 'description is required',
+                message: 'name is required',
+            });
+        }else if (!req.body.surname) {
+            return res.status(400).send({
+                success: 'false',
+                message: 'surname is required',
+            });
+        }else if (!req.body.contact) {
+            return res.status(400).send({
+                success: 'false',
+                message: 'contact is required',
             });
         }
-        const todo = {
+
+        const user = {
             id: db.length + 1,
+            id: req.body.email,
             title: req.body.title,
-            description: req.body.description,
+            name: req.body.name,
+            surname: req.body.surname,
+            contact: req.body.contact
         };
-        db.push(todo);
+        db.push(user);
         return res.status(201).send({
             success: 'true',
-            message: 'todo added successfully',
-            todo,
+            message: 'User added successfully',
+            users,
         });
     }
 
 
-    //3. Edit specific claim using id 
+    //3. Edit specific user using userid 
     updateUser(req, res) {
         const id = parseInt(req.params.id, 10);
-        let todoFound;
+        let userFound;
         let itemIndex;
-        db.map((todo, index) => {
-            if (todo.id === id) {
-                todoFound = todo;
+        db.map((user, index) => {
+            if (user.id === id) {
+                userFound = user;
                 itemIndex = index;
             }
         });
 
-        if (!todoFound) {
+        if (!userFound) {
             return res.status(404).send({
                 success: 'false',
-                message: 'todo not found',
+                message: 'User not found',
             });
         }
 
-        if (!req.body.title) {
+        if (!req.body.email) {
+            return res.status(400).send({
+                success: 'false',
+                message: 'email is required',
+            });
+        }else if (!req.body.title) {
             return res.status(400).send({
                 success: 'false',
                 message: 'title is required',
             });
-        } else if (!req.body.description) {
+        }else if (!req.body.name) {
             return res.status(400).send({
                 success: 'false',
-                message: 'description is required',
+                message: 'name is required',
+            });
+        }else if (!req.body.surname) {
+            return res.status(400).send({
+                success: 'false',
+                message: 'surname is required',
+            });
+        }else if (!req.body.contact) {
+            return res.status(400).send({
+                success: 'false',
+                message: 'contact is required',
             });
         }
 
-        const newTodo = {
-            id: todoFound.id,
-            title: req.body.title || todoFound.title,
-            description: req.body.description || todoFound.description,
+        const newUser = {
+            id: userFound.id ,
+            email: req.body.email || userFound.email ,
+            title: req.body.title || userFound.title ,
+            name: req.body.name || userFound.name ,
+            surname: req.body.surname || userFound.surname,
+            contact: req.body.contact || userFound.contact,
         };
 
-        db.splice(itemIndex, 1, newTodo);
+        db.splice(itemIndex, 1, newUser);
 
         return res.status(201).send({
             success: 'true',
-            message: 'todo added successfully',
+            message: 'User updated added successfully',
             newTodo,
         });
     }
 
-    //4. Delete specific claim using id
+    //4. Delete specific claim using userid
     deleteUser(req, res) {
         const id = parseInt(req.params.id, 10);
-        let todoFound;
+        let userFound;
         let itemIndex;
-        db.map((todo, index) => {
-            if (todo.id === id) {
-                todoFound = todo;
+        db.map((user, index) => {
+            if (user.id === id) {
+                userFound = user;
                 itemIndex = index;
             }
         });
 
-        if (!todoFound) {
+        if (!userFound) {
             return res.status(404).send({
                 success: 'false',
-                message: 'todo not found',
+                message: 'User not found',
             });
         }
         db.splice(itemIndex, 1);
 
         return res.status(200).send({
             success: 'true',
-            message: 'Todo deleted successfuly',
+            message: 'User deleted successfuly',
         });
     }
 }
