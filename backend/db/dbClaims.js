@@ -1,6 +1,5 @@
 const claims =  [
     {
-        id: 1,
         userid: 1,
         claimtype: "Travel", 
         claimID: 1 , 
@@ -8,7 +7,6 @@ const claims =  [
         total: 256.65 ,
     },
     {
-        id: 2,
         userid: 1,
         claimtype: "Personal", 
         claimID: 1 , 

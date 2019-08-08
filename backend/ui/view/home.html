@@ -1,0 +1,128 @@
+<html>
+<head>
+    <title>HOME</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../script/main.css" />
+    <style>
+        /* Add a gray background color and some padding to the footer */
+        footer {
+        background-color: #f2f2f2;
+        padding: 25px;
+        }
+
+        .carousel-inner img {
+        width: 100%; /* Set width to 100% */
+        min-height: 200px;
+        }
+
+        /* Hide the carousel text when the screen is less than 600 pixels wide */
+        @media (max-width: 600px) {
+            .carousel-caption {
+                display: none; 
+            }
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: grey;
+            color: white;
+            text-align: center;
+        }
+    </style>
+    
+</head>
+<body>
+    
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="#">Logo</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Users</a></li>
+                <li><a href="#">Claims</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div></div>
+
+    <div class="footer container text-center">
+        <div class="row">
+            
+            <div class="col-sm-10"> 
+                <form>
+                    <div class="form-row">
+                        <div class="col-md-2 mb-3">
+                            <label for="validationDefault00">First name</label>
+                            <input type="text" class="form-control" id="validationDefault00" placeholder="Mr" required>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label for="validationDefault01">First name</label>
+                            <input type="text" class="form-control" id="validationDefault01" placeholder="First name" value="Mark" required>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label for="validationDefault02">Last name</label>
+                            <input type="text" class="form-control" id="validationDefault02" placeholder="Last name" value="Otto" required>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label for="validationDefaultUsername">Username</label>
+                            <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Username@gmail.com" required>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label for="validationDefault04">Contact</label>
+                            <input type="text" class="form-control" id="validationDefault04" placeholder="0120000000" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-3 mb-3">
+                            <label for="validationDefault03">City</label>
+                            <input type="text" class="form-control" id="validationDefault03" placeholder="City" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="validationDefault04">State</label>
+                            <input type="text" class="form-control" id="validationDefault04" placeholder="State" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="validationDefault05">Zip</label>
+                            <input type="text" class="form-control" id="validationDefault05" placeholder="Zip" required>
+                        </div>
+                        
+                    </div>
+                </form>   
+            </div>
+            <div class="col-sm-2">
+                <br/>
+                <button type="button" class="btn btn-info">
+                    <input type="radio" name="age" value="30"> Create User <br/>
+                    <input type="radio" name="age" value="30"> Update User <br/>
+                </button><br/>
+                <br/>
+                <button type="button" class="btn btn-success"> Submit </button><br/>
+                <br/>
+            </div>
+        </div>
+    </div>
+    <script  src="../script/view.js"></script>
+    
+</body>
+</html>
