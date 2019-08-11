@@ -1,5 +1,5 @@
-//Editing the users
-onUserClickHandler = (access,ref) => {
+//1. Editing the users -----------------------------------------------------------
+onUserClickHandler = (ref) => {
 
     var url = "localhost:5000/api/v1/user"; 
     var x = document.getElementById(ref) ;
@@ -12,7 +12,6 @@ onUserClickHandler = (access,ref) => {
         vehicle: [
             { 
                 registration: x.elements["reg"].value , 
-                manufacture: x.elements["man"].value, 
                 model: x.elements["model"].value
             }
         ],
@@ -20,13 +19,10 @@ onUserClickHandler = (access,ref) => {
             street: x.elements["street"].value ,
             surbub: x.elements["surbub"].value ,
             city: x.elements["city"].value,
-            gps: {
-                latitude: x.elements["latitude"].value ,
-                longitude: x.elements["longitude"].value ,
-            }
         },
     }
 
+    var access = x.elements["options"].value ;
     switch(access){
         case "DELETE": accessDelete( url, x.elements["id"].value );
             break;
@@ -34,11 +30,13 @@ onUserClickHandler = (access,ref) => {
             break;
         case "INSERT": accessInsert(url,data);
     }
-    accessData(url);
+
+    //accessData(url);
+    document.getElementById(ref).reset();
 };
 
-//Editing claims 
-onClaimClickHandler = ( access, ref) => {
+//2. Editing claims-------------------------------------------------------------------------
+onClaimClickHandler = ( ref) => {
 
     var url = "localhost:5000/api/v1/claim";
     var x = document.getElementById(ref) ;
@@ -55,18 +53,12 @@ onClaimClickHandler = ( access, ref) => {
         data.claiminfo =  {
             id: x.elements["id"].value ,
             odometer: {
-                before: x.elements["before"].value,
-                beforeimage: x.elements["beforeimage"].value,
-                After: x.elements["after"].value,
-                afterimage: x.elements["afterimage"].value ,
+                before: x.elements["before"].value ,
+                After: x.elements["after"].value ,
             } ,
             homeclient: x.elements["homeclient"].value ,
             homeoffice: x.elements["homeoffice"].value ,
             officeclient: x.elements["officeclient"].value ,
-            clientoffice: {
-                latitude: x.elements["latitude"].value ,
-                longitude: x.elements["longitude"].value ,
-            },
         }
     }else{
         data.claiminfo = {
@@ -79,6 +71,7 @@ onClaimClickHandler = ( access, ref) => {
         }
     }
 
+    var access = x.elements["options"].value ;
     switch(access){
         case "DELETE": accessDelete( url, x.elements["id"].value );
             break;
@@ -86,23 +79,27 @@ onClaimClickHandler = ( access, ref) => {
             break;
         case "INSERT": accessInsert(url,data);
     }
+
+    //accessData(url);
+    document.getElementById(ref).reset();
 };
 
+//3. Settings Update ------------------------------------------------------------------
 onSettingsClickHandler = ( access, ref) => {
     var url = "localhost:5000/api/v1/settings";
     var x = document.getElementById(ref) ;
     var data = {
-        id: x.elements["id"].value ,
         userid: x.elements["userid"].value ,
         autosubmission:{
-            status: x.elements["status"].value,
+            status: x.elements["autosubmit"].value,
             startdate: x.elements["data"].value ,
             interval: x.elements["interval"].value,
             skip: x.elements["skip"].value  ,
         },
-        emaildestination: x.elements["emaildestination"].value , 
+        submittoemail: x.elements["submittoemail"].value , 
     }
 
+    var access = x.elements["options"].value ;
     switch(access){
         case "DELETE": accessDelete( url, x.elements["id"].value );
             break;
@@ -110,5 +107,8 @@ onSettingsClickHandler = ( access, ref) => {
             break;
         case "INSERT": accessInsert(url,data);
     }
+
+    //accessData(url);
+    document.getElementById(ref).reset();
 };
 

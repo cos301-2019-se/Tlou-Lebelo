@@ -12,10 +12,6 @@ const travelclaims =  [
         homeclient: 88,
         homeoffice: 20,
         officeclient: 68 ,
-        clientoffice: {
-            latitude: 14.2566879 ,
-            longitude: 26.1231072
-        },
         total: 256.65,
     }
 ];

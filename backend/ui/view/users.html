@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>HOME</title>
+    <title>USER</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -35,6 +35,12 @@
             color: white;
             text-align: center;
         }
+
+        .vl {
+            border-right: 6px solid black;
+            height: 140px;
+            top: 5;
+        }
     </style>
     
 </head>
@@ -52,8 +58,8 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="./users.html">Users</a></li>
+                <li><a href="./home.html">Home</a></li>
+                <li class="active"><a href="./users.html">Users</a></li>
                 <li><a href="./claims.html">Claims</a></li>
                 <li><a href="./settings.html">Settings</a></li>
             </ul>
@@ -70,12 +76,12 @@
 
     <div class="footer container text-center">
         <div class="row">
-            <form>
+            <form action="" id="usersform" onsubmit="onUserClickHandler('usersform')">
                 <div class="col-sm-10"> 
-                    <div class="col-md-5">
+                    <div class="col-md-5 vl">
                         <div class="col-md-4">
-                            <label for="validationDefault00">Title</label>
-                            <select name="cars" class="form-control" id="validationDefault00" required >
+                            <label for="Default00">Title</label>
+                            <select class="form-control" id="Default00" name="title" required >
                                 <option value="Mr">Mr</option>
                                 <option value="Mrs">Mrs</option>
                                 <option value="Miss">Miss</option>
@@ -83,43 +89,52 @@
                             </select>
                         </div>
                         <div class="col-md-4 ">
-                            <label for="validationDefault01">First name</label>
-                            <input type="text" class="form-control" id="validationDefault01" placeholder="First name" value="Mark" required>
+                            <label for="Default01">First name</label>
+                            <input type="text" class="form-control" id="Default01" name="name" placeholder="First name" value="Mark" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="validationDefault02">Last name</label>
-                            <input type="text" class="form-control" id="validationDefault02" placeholder="Last name" value="Otto" required>
+                            <label for="Default02">Last name</label>
+                            <input type="text" class="form-control" id="Default02" name="surname"placeholder="Last name" value="Otto" required>
                         </div>
                         <div class="col-md-7">
-                            <label for="validationDefaultUsername">Username</label>
-                            <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Username@gmail.com" required>
+                            <label for="Default03">Username</label>
+                            <input type="email" class="form-control" id="Default03" name="email" placeholder="Username@gmail.com" required>
                         </div>
                         <div class="col-md-5">
-                            <label for="validationDefault04">Contact</label>
-                            <input type="text" class="form-control" id="validationDefault04" placeholder="0120000000" required>
+                            <label for="Default04">Contact</label>
+                            <input type="number" class="form-control" id="Default04" name="contact" placeholder="0120000000" required>
                         </div>
                     </div>
-                    <div class="col-md-5">
-                        <div class="col-md-4 mb-3">
-                            <label for="validationDefault03">City</label>
-                            <input type="text" class="form-control" id="validationDefault03" placeholder="Pretoria" required>
+                    <div class="col-md-4 vl">
+                        <div class="col-md-6 mb-3">
+                            <label for="Default05">City</label>
+                            <input type="text" class="form-control" id="Default05" name="city" placeholder="Pretoria" required>
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="validationDefault04">Surbub</label>
-                            <input type="text" class="form-control" id="validationDefault04" placeholder="Hatfield" required>
+                        <div class="col-md-6 mb-3">
+                            <label for="Default04">Surbub</label>
+                            <input type="text" class="form-control" id="Default06" name="surbub" placeholder="Hatfield" required>
                         </div>
-                        <div class="col-md-8 mb-3">
-                            <label for="validationDefault05">Street</label>
-                            <input type="text" class="form-control" id="validationDefault05" placeholder="56 Lynwood Road" required>
+                        <div class="col-md-12 mb-3">
+                            <label for="Default07">Street</label>
+                            <input type="text" class="form-control" id="Default07" name="street" placeholder="56 Lynwood Road" required>
                         </div>
-                        
+                    </div>
+                    <div class="col-md-3 vl">
+                        <div class="col-md-12 mb-3">
+                            <label for="Default08">Vehicle Registration no.</label>
+                            <input type="text" class="form-control" id="Default08" name="reg" placeholder="XW25RS-GP" required>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="Default09">Vehicle Brand & Model</label>
+                            <input type="text" class="form-control" id="Default09" name="model" placeholder="Toyota, Hilux 2.8 2019" required>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <br/>
                     <button type="button" class="btn btn-info">
-                        <input type="radio" name="age" value="30"> Create User <br/>
-                        <input type="radio" name="age" value="30"> Update User <br/>
+                        <input type="radio" name="options" value="INSERT"> Create User <br/>
+                        <input type="radio" name="options" value="UPDATE"> Update User <br/>
                     </button><br/>
                     <br/>
                     <button type="submit" class="btn btn-success"> Submit </button><br/>
