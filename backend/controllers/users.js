@@ -1,13 +1,15 @@
 import db from '../db/dbUsers';
+import postgres from '../db/db' ;
 
 class UsersController {
 
     //1.1. get all todos
     getAllUsers(req, res) {
+        var userw = postgres('SELECT * FROM users;');
         return res.status(200).send({
             success: 'true',
             message: 'users retrieved successfully',
-            users: db,
+            users: userw,
         });
     }
 
@@ -61,17 +63,26 @@ class UsersController {
 
         const user = {
             id: db.length + 1,
-            id: req.body.email,
+            email: req.body.email,
             title: req.body.title,
             name: req.body.name,
             surname: req.body.surname,
             contact: req.body.contact
         };
+        var sql = "INSERT INTO users (contact, email, name, surname, title) VALUES (";
+        sql += user.contact + ",'" ;
+        sql += user.email + "','" ;
+        sql += user.name + "','" ;
+        sql += user.surname + "','" ;
+        sql += user.title + "');" ;
+
         db.push(user);
+        postgres(sql);
+
         return res.status(201).send({
             success: 'true',
             message: 'User added successfully',
-            users,
+            user,
         });
     }
 

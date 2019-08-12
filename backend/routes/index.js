@@ -21,11 +21,11 @@ router.delete('/api/v1/claim/:id', claimsController.deleteClaim);
 
 //3. User Interface
 router.get('/', function(req,res){
-    res.sendFile(path.join(__dirname+'./home.html'));
+    res.sendFile(path.join(__dirname+'/../ui/view/home.html'));
 });
 
 router.get('/claimform', function(req,res){
-    res.sendFile(path.join(__dirname+'./claimform.html'));
+    res.sendFile(path.join(__dirname+'./users.html'));
 });
 
 export default router;
