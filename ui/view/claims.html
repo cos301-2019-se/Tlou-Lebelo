@@ -1,0 +1,176 @@
+<html>
+<head>
+    <title>CLAIM</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../script/main.css" />
+    <style>
+        /* Add a gray background color and some padding to the footer */
+        footer {
+            background-color: #f2f2f2;
+            padding: 25px;
+        }
+
+        .carousel-inner img {
+            width: 100%; /* Set width to 100% */
+            min-height: 200px;
+        }
+
+        /* Hide the carousel text when the screen is less than 600 pixels wide */
+        @media (max-width: 600px) {
+            .carousel-caption {
+                display: none; 
+            }
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: grey;
+            color: white;
+            text-align: center;
+        }
+
+        .vl {
+            border-right: 6px solid black;
+            height: 140px;
+            top: 5;
+        }
+    </style>
+    
+</head>
+<body>
+    
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="#">Logo</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="./home.html">Home</a></li>
+                <li><a href="./users.html">Users</a></li>
+                <li class="active"><a href="./claims.html">Claims</a></li>
+                <li><a href="./settings.html">Settings</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="claimsoutput">
+
+    </div>
+
+    <div class="footer container text-center">
+        <div class="row">
+            <form action="" id="claimsform" onsubmit="onClaimClickHandler('claimsform')">
+                <div class="col-sm-10"> 
+                    <div class="col-md-3 vl">
+                        <div class="col-md-12">
+                            <label for="Default01"> Date </label>
+                            <input type="date" class="form-control" id="Default01" name="date" placeholder="2019/12/31" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="Default02"> Total R </label>
+                            <input type="number" class="form-control" id="Default02" name="total" placeholder="258.25" value="Otto" required>
+                        </div>
+                    </div>
+                    <div class="col-md-2 vl" >
+                        <div class="col-md-12">
+                            <label for="claimtype"> Claim Type </label>
+                            <select class="form-control" id="claimtype" name="claimtype" onchange="claimType()" required >
+                                <option value="personal">Personal</option>
+                                <option value="travel">Travel</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-7 vl" id="travel" >    
+                        <div class="col-md-4">
+                            <label for="Default04">Odometer Before</label>
+                            <input type="text" class="form-control" id="Default04" name="before" placeholder="48569" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="Default03">Odometer After</label>
+                            <input type="text" class="form-control" id="Default03" name="after" placeholder="48966" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="Default04">Home -> Office</label>
+                            <input type="text" class="form-control" id="Default04" name="homeoffice" placeholder="Hatfield" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="Default05">Office -> Client</label>
+                            <input type="text" class="form-control" id="Default05" name="officeclient" placeholder="56 Lynwood Road" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="Default05">Home -> Client</label>
+                            <input type="text" class="form-control" id="Default05" name="homeclient" placeholder="56 Lynwood Road" required>
+                        </div>
+                    </div>
+                    <div class="col-md-7 vl" id="personal" >  
+                        <div class="col-md-4">
+                            <label for="Default04">Purpose</label>
+                            <input type="text" class="form-control" id="Default04" name="purpose" placeholder="Community Service" required>
+                        </div>  
+                        <div class="col-md-4">
+                            <label for="Default04">Vendor</label>
+                            <input type="text" class="form-control" id="Default04" name="vendor" placeholder="PnP" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="Default03"> Comma separated Item(s) </label>
+                            <input type="text" class="form-control" id="Default03" name="item" placeholder="2xPens, 4xRuler" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="Default05"> Description </label>
+                            <input type="text" class="form-control" id="Default05" name="description" placeholder="Bought stationary ..." >
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="Default05"> Proof of Purchase </label>
+                            <input type="file" class="form-control" id="Default05" name="proof" accept="image/*" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <br/>
+                    <div class="col-md-8 mb-3 input-group ">
+                        <span class="input-group-addon"> userid </span>
+                        <input id="msg" type="number" class="form-control" name="userid" placeholder="1" required>
+                    </div>
+                    <br/>
+                    <div class="col-md-8 mb-3 input-group ">
+                        <button type="submit" class="btn btn-success"> Submit Claim </button>
+                    </div>
+                    <br/>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script  src="../script/view.js"></script>
+    <script>
+        function claimType() {
+            var x = document.getElementById("claimtype").value;
+            if( x === "personal"){
+                document.getElementById("travel").style.display = "none" ;
+                document.getElementById("personal").style.display = "inline-block" ;
+            }else{ 
+                document.getElementById("personal").style.display = "none" ;
+                document.getElementById("travel").style.display = "inline-block" ;
+            }
+        }
+        claimType();
+    </script>
+    <script src="../script/dataHandler.js"></script>
+</body>
+</html>
