@@ -1,11 +1,11 @@
 import db from '../db/dbUsers';
 import postgres from '../db/db' ;
 
-class UsersController {
+class SettingsController {
 
     //1.1. get all todos
-    getAllUsers(req, res) {
-        var userw = postgres('SELECT * FROM users;');
+    getAllSettings(req, res) {
+        var userw = postgres('SELECT * FROM settings;');
         return res.status(200).send({
             success: 'true',
             message: 'users retrieved successfully',
@@ -14,9 +14,9 @@ class UsersController {
     }
 
     //1.2. Get specific user using id  
-    getUser(req, res) {
+    getSettings(req, res) {
         const id = parseInt(req.params.id, 10);
-        const sql = 'SELECT * FROM users WHERE id='+ id +';' ;
+        const sql = 'SELECT * FROM settings WHERE id='+ id +';' ;
         var userbyid = postgres(sql);
         
         if ( userbyid ) {
@@ -34,70 +34,51 @@ class UsersController {
     }
 
 
-    //2. Create new user (New Database entry)
-    createUser(req, res) {
-        if (!req.body.email) {
+    //2. Create new user settings (New Database entry)
+    createSettings(req, res) {
+
+        if (!req.body.submittoemail) {
             return res.status(400).send({
                 success: 'false',
                 message: 'email is required',
             });
-        } else if (!req.body.title) {
-            return res.status(400).send({
-                success: 'false',
-                message: 'title is required',
-            });
-        }else if (!req.body.name) {
-            return res.status(400).send({
-                success: 'false',
-                message: 'name is required',
-            });
-        }else if (!req.body.surname) {
-            return res.status(400).send({
-                success: 'false',
-                message: 'surname is required',
-            });
-        }else if (!req.body.contact) {
-            return res.status(400).send({
-                success: 'false',
-                message: 'contact is required',
-            });
-        }
+        } 
 
-        /*const user = {
-            id: db.length + 1,
-            email: req.body.email,
-            title: req.body.title,
-            name: req.body.name,
-            surname: req.body.surname,
-            contact: req.body.contact
-        };*/
+        const user = {
+            submittoemail: req.body.submittoemail,
+            autosubmit: req.body.autosubmit || false,
+            startdate: req.body.startdate || Date(),
+            period: req.body.period || "Monthly",
+            skip: req.body.skip || 0 ,
+            userid: req.params.userid 
+        };
 
-        var sql = "INSERT INTO users (contact, email, name, surname, title) VALUES (";
-        sql += user.contact + ",'" ;
-        sql += user.email + "','" ;
-        sql += user.name + "','" ;
-        sql += user.surname + "','" ;
-        sql += user.title + "');" ;
+        var sql = "INSERT INTO users (submittoemail, autosubmit, startdate, period, skip, userid) VALUES ('";
+        sql += user.submittoemail + "'," ;
+        sql += user.autosubmit + ",'" ;
+        sql += user.startdate + "','" ;
+        sql += user.period + "'," ;
+        sql += user.skip + "," ;
+        sql += user.userid + ");" ;
 
-        //db.push(user);
-        var newuser = postgres(sql);
+        var newusersettings = postgres(sql);
 
         return res.status(201).send({
             success: 'true',
             message: 'User added successfully',
-            newuser,
+            newusersettings,
         });
     }
 
 
     //3. Edit specific user using userid 
-    updateUser(req, res) {
+    updateSettings(req, res) {
 
         const id = parseInt(req.params.id, 10);
-        var sql = 'SELECT * FROM users WHERE id='+ id +';' ;
-        var userbyid = postgres(sql);
+        var sql = 'SELECT * FROM settings WHERE id='+ id +';' ;
+        var settingsbyuserid = postgres(sql);
         
-        if ( !userbyid ) {
+        if ( !settingsbyuserid ) {
             return res.status(404).send({
                 success: 'false',
                 message: 'User not found',
@@ -105,55 +86,55 @@ class UsersController {
         }
 
         const update = {
-            email: req.body.email || userbyid.email ,
-            title: req.body.title || userbyid.title ,
-            name: req.body.name || userbyid.name ,
-            surname: req.body.surname || userbyid.surname,
-            contact: req.body.contact || userbyid.contact,
+            submittoemail: req.body.submittoemail || settingsbyuserid.submittoemail ,
+            autosubmit: req.body.autosubmit || settingsbyuserid.autosubmit ,
+            startdate: req.body.startdate || settingsbyuserid.startdate ,
+            period: req.body.period || settingsbyuserid.period,
+            skip: req.body.skip || settingsbyuserid.skip,
         };
 
         //db.splice(itemIndex, 1, newUser);
 
-        sql = "UPDATE users SET " ;
-        sql += "name= '"+ update.name +"', " ;
-        sql += "surname= '"+ update.surname +"', " ;
-        sql += "email= '"+ update.email +"', " ;
-        sql += "title= '"+ update.title +"', " ;
-        sql += "contact= "+ update.contact +" ";
-        sql += "WHERE CustomerID= "+ id +";" ;
+        sql = "UPDATE settings SET " ;
+        sql += "submittoemail='"+ update.submittoemail +"', " ;
+        sql += "autosubmit="+ update.autosubmit +", " ;
+        sql += "startdate='"+ update.startdate +"', " ;
+        sql += "period='"+ update.period +"', " ;
+        sql += "skip="+ update.skip +" ";
+        sql += " WHERE id="+ id +";" ;
 
         postgres(sql);
 
         return res.status(201).send({
             success: 'true',
-            message: 'User updated added successfully',
+            message: 'Settings update added successfully',
             update,
         });
     }
 
     //4. Delete specific claim using userid
-    deleteUser(req, res) {
+    deleteSettings(req, res) {
         const id = parseInt(req.params.id, 10);
-        var sql = 'SELECT * FROM users WHERE id='+ id +';' ;
-        var userbyid = postgres(sql);
+        var sql = 'SELECT * FROM settings WHERE id='+ id +';' ;
+        var settingsbyuserid = postgres(sql);
         
-        if ( !userbyid ) {
+        if ( !settingsbyuserid ) {
             return res.status(404).send({
                 success: 'false',
-                message: 'User not found',
+                message: 'Settings not found',
             });
         }
 
         //db.splice(itemIndex, 1);
-        sql = 'DELETE FROM users WHERE id='+ id +';' ;
+        sql = 'DELETE FROM settings WHERE id='+ id +';' ;
         postgres(sql);
 
         return res.status(200).send({
             success: 'true',
-            message: 'User deleted successfuly',
+            message: 'Settings deleted successfuly',
         });
     }
 }
 
-const usersController = new UsersController();
-export default usersController;
+const settingsController = new SettingsController();
+export default settingsController;

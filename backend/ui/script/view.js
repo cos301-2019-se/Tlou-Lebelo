@@ -1,3 +1,6 @@
+import users from "../../db/dbUsers";
+import apiCall from "./apiCalls" ;
+/*
 window.onscroll = function() {myFunction()};
 
 var header = document.getElementById("myHeader");
@@ -9,4 +12,14 @@ function myFunction() {
     } else {
         header.classList.remove("sticky");
     }
+}*/
+
+var body = document.getElementById("body");
+
+function loadBody( body ){
+    var url = "https://claimsapplication.herokuapp.com/api/v1/user"
+    var data = apiCall.accessData(url,"") ;
+    body.innerHTML = data ;
 }
+
+loadBody(body);

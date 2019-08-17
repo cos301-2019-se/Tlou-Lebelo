@@ -1,11 +1,11 @@
 import db from '../db/dbUsers';
 import postgres from '../db/db' ;
 
-class UsersController {
+class VehicleController {
 
     //1.1. get all todos
-    getAllUsers(req, res) {
-        var userw = postgres('SELECT * FROM users;');
+    getAllVehicle(req, res) {
+        var userw = postgres('SELECT * FROM vehicle;');
         return res.status(200).send({
             success: 'true',
             message: 'users retrieved successfully',
@@ -14,146 +14,134 @@ class UsersController {
     }
 
     //1.2. Get specific user using id  
-    getUser(req, res) {
-        const id = parseInt(req.params.id, 10);
-        const sql = 'SELECT * FROM users WHERE id='+ id +';' ;
-        var userbyid = postgres(sql);
+    getVehicle(req, res) {
         
-        if ( userbyid ) {
+        var vehicle ;
+        if( req.params.id ){
+            const id = parseInt(req.params.id, 10);
+            const sql = 'SELECT * FROM vehicle WHERE id='+ id +';' ;
+            vehicle = postgres(sql);
+
+        }else if( req.params.userid ){
+            const userid = parseInt(req.params.userid, 10);
+            const sql = 'SELECT * FROM vehicle WHERE userid='+ userid +';' ;
+            vehicle = postgres(sql);
+        }
+        
+        if ( vehicle ) {
             return res.status(200).send({
                 success: 'true',
-                message: 'user retrieved successfully',
-                userbyid,
+                message: 'Vehicle retrieved successfully',
+                vehicle,
             });
         }
         
         return res.status(404).send({
             success: 'false',
-            message: 'user does not exist',
+            message: 'Vehicle does not exist',
         });
     }
 
 
-    //2. Create new user (New Database entry)
-    createUser(req, res) {
-        if (!req.body.email) {
+    //2. Add new vehicle (New Database entry)
+    createVehicle(req, res) {
+
+        if (!req.params.userid ) {
             return res.status(400).send({
                 success: 'false',
-                message: 'email is required',
+                message: 'userid is required',
             });
-        } else if (!req.body.title) {
+        }
+        
+        if (!req.body.registration) {
             return res.status(400).send({
                 success: 'false',
-                message: 'title is required',
+                message: 'registration is required',
             });
-        }else if (!req.body.name) {
+        }else if (!req.body.description) {
             return res.status(400).send({
                 success: 'false',
-                message: 'name is required',
-            });
-        }else if (!req.body.surname) {
-            return res.status(400).send({
-                success: 'false',
-                message: 'surname is required',
-            });
-        }else if (!req.body.contact) {
-            return res.status(400).send({
-                success: 'false',
-                message: 'contact is required',
+                message: 'description is required',
             });
         }
 
-        /*const user = {
-            id: db.length + 1,
-            email: req.body.email,
-            title: req.body.title,
-            name: req.body.name,
-            surname: req.body.surname,
-            contact: req.body.contact
-        };*/
+        var sql = "INSERT INTO vehicle (userid, registration, description) VALUES (";
+        sql += req.params.userid + ",'" ;
+        sql += req.body.registration + "','" ;
+        sql += req.body.description + "');" ;
 
-        var sql = "INSERT INTO users (contact, email, name, surname, title) VALUES (";
-        sql += user.contact + ",'" ;
-        sql += user.email + "','" ;
-        sql += user.name + "','" ;
-        sql += user.surname + "','" ;
-        sql += user.title + "');" ;
-
-        //db.push(user);
-        var newuser = postgres(sql);
+        var nVehicle = postgres(sql);
 
         return res.status(201).send({
             success: 'true',
-            message: 'User added successfully',
-            newuser,
+            message: 'Vehicle added successfully',
+            nVehicle,
         });
     }
 
 
-    //3. Edit specific user using userid 
-    updateUser(req, res) {
+    //3. Update vehicle details using id 
+    updateVehicle(req, res) {
 
-        const id = parseInt(req.params.id, 10);
-        var sql = 'SELECT * FROM users WHERE id='+ id +';' ;
-        var userbyid = postgres(sql);
+        var vehicle ;
+        if( req.params.id ){
+            var id = parseInt(req.params.id, 10);
+            var sql = 'SELECT * FROM vehicle WHERE id='+ id +';' ;
+            vehicle = postgres(sql);
+
+        }
         
-        if ( !userbyid ) {
+        if ( !vehicle ) {
             return res.status(404).send({
                 success: 'false',
-                message: 'User not found',
+                message: 'Vehicle not found',
             });
         }
 
-        const update = {
-            email: req.body.email || userbyid.email ,
-            title: req.body.title || userbyid.title ,
-            name: req.body.name || userbyid.name ,
-            surname: req.body.surname || userbyid.surname,
-            contact: req.body.contact || userbyid.contact,
+        var update = {
+            registration: req.body.registration || vehicle.registration ,
+            description: req.body.description || vehicle.description ,
         };
 
-        //db.splice(itemIndex, 1, newUser);
+        var sql = "UPDATE vehicle SET " ;
+        sql += "registration='"+ update.registration +"', " ;
+        sql += "description='"+ update.description +"' " ;
+        sql += " WHERE id="+ id +";" ;
 
-        sql = "UPDATE users SET " ;
-        sql += "name= '"+ update.name +"', " ;
-        sql += "surname= '"+ update.surname +"', " ;
-        sql += "email= '"+ update.email +"', " ;
-        sql += "title= '"+ update.title +"', " ;
-        sql += "contact= "+ update.contact +" ";
-        sql += "WHERE CustomerID= "+ id +";" ;
-
-        postgres(sql);
+        var vUpdate = postgres(sql);
 
         return res.status(201).send({
             success: 'true',
-            message: 'User updated added successfully',
-            update,
+            message: 'Vehicle update added successfully',
+            vUpdate,
         });
     }
 
-    //4. Delete specific claim using userid
-    deleteUser(req, res) {
-        const id = parseInt(req.params.id, 10);
-        var sql = 'SELECT * FROM users WHERE id='+ id +';' ;
-        var userbyid = postgres(sql);
-        
-        if ( !userbyid ) {
+    //4. Delete specific vehicle using id
+    deleteVehicle(req, res) {
+        var vehicle ;
+        if( req.params.id ){
+            var id = parseInt(req.params.id, 10);
+            var sql = 'SELECT * FROM vehicle WHERE id='+ id +';' ;
+            vehicle = postgres(sql);
+        }
+
+        if ( !vehicle ) {
             return res.status(404).send({
                 success: 'false',
-                message: 'User not found',
+                message: 'Vehicle not found',
             });
         }
 
-        //db.splice(itemIndex, 1);
-        sql = 'DELETE FROM users WHERE id='+ id +';' ;
+        sql = 'DELETE FROM vehicle WHERE id='+ id +';' ;
         postgres(sql);
 
         return res.status(200).send({
             success: 'true',
-            message: 'User deleted successfuly',
+            message: 'Vehicle deleted successfuly',
         });
     }
 }
 
-const usersController = new UsersController();
-export default usersController;
+const vehicleController = new VehicleController();
+export default vehicleController;

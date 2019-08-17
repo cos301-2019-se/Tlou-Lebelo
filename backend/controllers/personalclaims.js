@@ -1,11 +1,11 @@
 import db from '../db/dbUsers';
 import postgres from '../db/db' ;
 
-class ClaimsController {
+class PersonalClaimsController {
 
-    //1.1. get all Claims
+    //1.1. Get all Personal claims
     getAllClaims(req, res) {
-        var userw = postgres('SELECT * FROM claims;');
+        var userw = postgres('SELECT * FROM personalclaims;');
         return res.status(200).send({
             success: 'true',
             message: 'Claims retrieved successfully',
@@ -19,12 +19,12 @@ class ClaimsController {
         var claims ;
         if( req.params.id ){
             const id = parseInt(req.params.id, 10);
-            const sql = 'SELECT * FROM claims WHERE id='+ id +';' ;
+            const sql = 'SELECT * FROM personalclaims WHERE id='+ id +';' ;
             claims = postgres(sql);
 
         }else if( req.params.userid ){
             const userid = parseInt(req.params.userid, 10);
-            const sql = 'SELECT * FROM claims WHERE userid='+ userid +';' ;
+            const sql = 'SELECT * FROM personalclaims WHERE userid='+ userid +';' ;
             claims = postgres(sql);
         }
         
@@ -53,22 +53,52 @@ class ClaimsController {
             });
         }
         
-        if (!req.body.total) {
-            return res.status(400).send({
-                success: 'false',
-                message: 'total is required',
-            });
-        }else if (!req.body.claims) {
+        if (!req.body.description) {
             return res.status(400).send({
                 success: 'false',
                 message: 'description is required',
             });
+        }else if (!req.body.item) {
+            return res.status(400).send({
+                success: 'false',
+                message: 'item is required',
+            });
+        }else if (!req.body.purpose) {
+            return res.status(400).send({
+                success: 'false',
+                message: 'purpose is required',
+            });
+        }else if (!req.body.proof) {
+            return res.status(400).send({
+                success: 'false',
+                message: 'proof is required',
+            });
+        }else if (!req.body.vendor) {
+            return res.status(400).send({
+                success: 'false',
+                message: 'vendor is required',
+            });
+        }else if (!req.body.date) {
+            return res.status(400).send({
+                success: 'false',
+                message: 'date is required',
+            });
+        }else if (!req.body.total) {
+            return res.status(400).send({
+                success: 'false',
+                message: 'total is required',
+            });
         }
 
-        var sql = "INSERT INTO claims (userid, total, description) VALUES (";
+        var sql = "INSERT INTO personalclaims (userid, description, item, purpose, proof, vendor, date, total) VALUES (";
         sql += req.params.userid + ",'" ;
-        sql += req.body.total + "','" ;
-        sql += req.body.description + "');" ;
+        sql += req.body.description + "','" ;
+        sql += req.body.item + "','" ;
+        sql += req.body.purpose + "','" ;
+        sql += req.body.proof + "','" ;
+        sql += req.body.vendor + "','" ;
+        sql += req.body.date + "'," ;
+        sql += req.body.total + ");" ;
 
         var nClaims = postgres(sql);
 
@@ -86,7 +116,7 @@ class ClaimsController {
         var claims ;
         if( req.params.id ){
             var id = parseInt(req.params.id, 10);
-            var sql = 'SELECT * FROM claims WHERE id='+ id +';' ;
+            var sql = 'SELECT * FROM personalclaims WHERE id='+ id +';' ;
             claims = postgres(sql);
 
         }
@@ -99,13 +129,23 @@ class ClaimsController {
         }
 
         var update = {
-            registration: req.body.registration || claims.registration ,
             description: req.body.description || claims.description ,
+            item: req.body.item || claims.item ,
+            purpose: req.body.purpose || claims.purpose ,
+            proof: req.body.proof || claims.proof ,
+            vendor: req.body.vendor || claims.vendor ,
+            date: req.body.date || claims.date ,
+            total: req.body.total || claims.total ,
         };
 
-        var sql = "UPDATE claims SET " ;
-        sql += "registration='"+ update.registration +"', " ;
-        sql += "description='"+ update.description +"' "
+        var sql = "UPDATE personalclaims SET " ;
+        sql += "description="+ update.description +", " ;
+        sql += "item="+ update.item +", " ;
+        sql += "purpose="+ update.purpose +", " ;
+        sql += "proof="+ update.proof +", " ;
+        sql += "vendor="+ update.vendor +", " ;
+        sql += "date='"+ update.date +"', " ;
+        sql += "total="+ update.total +"  " ;
         sql += " WHERE id="+ id +";" ;
 
         var vUpdate = postgres(sql);
@@ -122,7 +162,7 @@ class ClaimsController {
         var claims ;
         if( req.params.id ){
             var id = parseInt(req.params.id, 10);
-            var sql = 'SELECT * FROM claims WHERE id='+ id +';' ;
+            var sql = 'SELECT * FROM personalclaims WHERE id='+ id +';' ;
             claims = postgres(sql);
         }
 
@@ -133,7 +173,7 @@ class ClaimsController {
             });
         }
 
-        sql = 'DELETE FROM claims WHERE id='+ id +';' ;
+        sql = 'DELETE FROM personalclaims WHERE id='+ id +';' ;
         postgres(sql);
 
         return res.status(200).send({
@@ -143,5 +183,5 @@ class ClaimsController {
     }
 }
 
-const claimsController = new ClaimsController();
-export default claimsController;
+const personalClaimsController = new PersonalClaimsController();
+export default personalClaimsController;

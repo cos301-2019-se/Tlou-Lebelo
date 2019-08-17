@@ -3,7 +3,7 @@ import path from 'path' ;
 
 import usersController from '../controllers/users.js';
 import vehicleController from '../controllers/vehicle.js';
-import residenceController from '../controllers/residence.js'
+import clientsController from '../controllers/clients.js'
 import claimsController from '../controllers/claims.js';
 import settingsController from '../controllers/settings.js'
 
@@ -23,12 +23,12 @@ router.post('/api/v1/vehicle', vehicleController.createVehicle);
 router.put('/api/v1/vehicle/:id', vehicleController.updateVehicle);
 router.delete('/api/v1/vehicle/:id', vehicleController.deleteVehicle);
 
-//3. Residence Controllers
-router.get('/api/v1/residence', residenceController.getAllResidence);
-router.get('/api/v1/residence/:id', residenceController.getResidence);
-router.post('/api/v1/residence', residenceController.createResidence);
-router.put('/api/v1/residence/:id', residenceController.updateResidence);
-router.delete('/api/v1/residence/:id', residenceController.deleteResidence);
+//3. Clients Controllers
+router.get('/api/v1/clients', clientsController.getAllClients);
+router.get('/api/v1/clients/:id', clientsController.getClients);
+router.post('/api/v1/clients', clientsController.createClients);
+router.put('/api/v1/clients/:id', clientsController.updateClients);
+router.delete('/api/v1/clients/:id', clientsController.deleteClients);
 
 //4. Claims Controllers
 router.get('/api/v1/claim', claimsController.getAllClaims);

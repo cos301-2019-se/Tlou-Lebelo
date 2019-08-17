@@ -9,7 +9,7 @@ class UsersController {
         return res.status(200).send({
             success: 'true',
             message: 'users retrieved successfully',
-            users: userw,
+            userw,
         });
     }
 
@@ -63,23 +63,13 @@ class UsersController {
             });
         }
 
-        /*const user = {
-            id: db.length + 1,
-            email: req.body.email,
-            title: req.body.title,
-            name: req.body.name,
-            surname: req.body.surname,
-            contact: req.body.contact
-        };*/
-
-        var sql = "INSERT INTO users (contact, email, name, surname, title) VALUES (";
-        sql += user.contact + ",'" ;
+        var sql = "INSERT INTO users (contact, email, name, surname, title) VALUES ('";
+        sql += user.contact + "','" ;
         sql += user.email + "','" ;
         sql += user.name + "','" ;
         sql += user.surname + "','" ;
         sql += user.title + "');" ;
 
-        //db.push(user);
         var newuser = postgres(sql);
 
         return res.status(201).send({
@@ -90,7 +80,7 @@ class UsersController {
     }
 
 
-    //3. Edit specific user using userid 
+    //3. Update User info using userid 
     updateUser(req, res) {
 
         const id = parseInt(req.params.id, 10);
@@ -115,23 +105,23 @@ class UsersController {
         //db.splice(itemIndex, 1, newUser);
 
         sql = "UPDATE users SET " ;
-        sql += "name= '"+ update.name +"', " ;
-        sql += "surname= '"+ update.surname +"', " ;
-        sql += "email= '"+ update.email +"', " ;
-        sql += "title= '"+ update.title +"', " ;
-        sql += "contact= "+ update.contact +" ";
-        sql += "WHERE CustomerID= "+ id +";" ;
+        sql += "name='"+ update.name +"', " ;
+        sql += "surname='"+ update.surname +"', " ;
+        sql += "email='"+ update.email +"', " ;
+        sql += "title='"+ update.title +"', " ;
+        sql += "contact='"+ update.contact +"' ";
+        sql += "WHERE id="+ id +";" ;
 
         postgres(sql);
 
         return res.status(201).send({
             success: 'true',
-            message: 'User updated added successfully',
+            message: 'User info updated successfully',
             update,
         });
     }
 
-    //4. Delete specific claim using userid
+    //4. Delete user using userid
     deleteUser(req, res) {
         const id = parseInt(req.params.id, 10);
         var sql = 'SELECT * FROM users WHERE id='+ id +';' ;
