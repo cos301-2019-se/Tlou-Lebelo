@@ -14,6 +14,7 @@ import MISCCLAIM from './pages/miscClaim' ;
 import OCR from './ocr/OCR';
 import Output from './ocr/Output';
 import SETTINGS from './pages/settings' ;
+import CLAIMSDATA from './pages/claimsData' ;
 
 
 const App = createStackNavigator({
@@ -66,6 +67,15 @@ const App = createStackNavigator({
         screen: SETTINGS,
         navigationOptions: {
             title: 'Settings',
+            headerStyle: {backgroundColor: '#8AD32E'},
+            headerTintColor: '#ffffff',
+        },
+    },
+
+    CLAIMSDATA: {
+        screen: CLAIMSDATA,
+        navigationOptions: {
+            title: 'CLAIMSDATA',
             headerStyle: {backgroundColor: '#8AD32E'},
             headerTintColor: '#ffffff',
         },

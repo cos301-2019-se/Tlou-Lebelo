@@ -1,7 +1,17 @@
 import React, { Component } from "react";
-import { Container, Header, Content, Card, CardItem, Text, Body, Left, Right, Button, Icon, Title } from "native-base";
+import { Container, Header, Content, Card, CardItem, Text, Body, Left, Right, Button, Icon, Title, Thumbnail } from "native-base";
 
 export default class CardItemBordered extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            date: "15 July 2019",
+            total: 0,
+            records: 0,
+            logo: require('../images/logo.png'),
+        }
+    }
 
     onSettingsClick = () => {
         this.props.navigation.navigate('SETTINGS')
@@ -15,36 +25,46 @@ export default class CardItemBordered extends Component {
         this.props.navigation.navigate('MISCCLAIM')
     }
 
+    onViewClick = () => {
+        this.props.navigation.navigate('CLAIMSDATA')
+    }
+    
     render() {
         return (
 
             <Container>
                 
-                <Header>
+                <Header style={{ backgroundColor: 'black' }} androidStatusBarColor="grey">
                     <Left>
-                        <Button transparent>
-                            <Icon name='grid' />
+                        <Button transparent >
+                            <Thumbnail source={this.state.logo} />
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Retro </Title>
+                        <Title style={{color: '#9EF911'}} >Retro Claims </Title>
                     </Body>
                     <Right>
                         <Button transparent onPress={() => this.onSettingsClick()} >
-                            <Icon name='settings' />
+                            <Icon name='settings' style={{color: '#9EF911'}} />
                         </Button>
                     </Right>
                 </Header>
 
                 <Card>
-                    <CardItem header bordered>
+                    <CardItem header bordered style={{alignItems: 'center',justifyContent: 'center',backgroundColor:'#D8DAD6'}}>
+                        <Text style={{color: 'black'}} >Records Summary</Text>
+                    </CardItem>
+                    <CardItem bordered>
                         <Left>
                             <Button transparent>
                                 <Icon active name="car" />
                                 <Text>13</Text>
                             </Button>
                         </Left>
-                        
+                        <Body>
+                            <Text> Count: 21 </Text>
+                            <Text> Total: R897.38 </Text>
+                        </Body>
                         <Right>
                             <Button transparent>
                                 <Icon active name="pizza" />
@@ -52,15 +72,9 @@ export default class CardItemBordered extends Component {
                             </Button>   
                         </Right>
                     </CardItem>
-                    <CardItem bordered>
-                        <Body>
-                            <Text> Records: 21 </Text>
-                            <Text> Total: R897.38 </Text>
-                        </Body>
-                    </CardItem>
                     <CardItem footer bordered>
                         <Left>
-                            <Button onPress={() => alert("View Claims Record!")} >
+                            <Button onPress={() => this.onViewClick()} >
                                 <Text>view</Text>
                             </Button>
                         </Left>
@@ -74,8 +88,8 @@ export default class CardItemBordered extends Component {
                 </Card>
 
                 <Card>
-                    <CardItem bordered header style={{alignItems: 'center',justifyContent: 'center'}}>
-                        <Text>Record New Claim</Text>
+                    <CardItem bordered header style={{alignItems: 'center',justifyContent: 'center',backgroundColor:'#D8DAD6'}}>
+                        <Text style={{color: 'black'}} >Record New Claim</Text>
                     </CardItem>
                     <CardItem bordered>
                         <Left>

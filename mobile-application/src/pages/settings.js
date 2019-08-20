@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { 
-    Container, Header, Content, List, ListItem, Text, Icon, Left, Body, Right, Switch, Picker, Button, Title 
+    Container, Header, Content, List, ListItem, Text, Icon, Left, Body, Right, Switch, Picker, Button, Title, Thumbnail
 } from 'native-base';
 
 
@@ -9,10 +9,11 @@ export default class ListDividerExample extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: "key1"
+            selected: "key1",
+            logo: require('../images/logo.png'),
         };
     }
-
+    
     onBackClick = () => {
         this.props.navigation.navigate('HOME')
     }
@@ -30,16 +31,18 @@ export default class ListDividerExample extends Component {
     render() {
         return (
             <Container>
-                <Header>
+                <Header style={{ backgroundColor: 'black' }} androidStatusBarColor="grey">
                     <Left>
                         <Button transparent onPress={() => this.onBackClick()}>
-                            <Icon name='arrow-back' />
+                            <Icon name='arrow-back' style={{color: '#9EF911'}} />
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Settings </Title>
+                        <Title style={{color: '#9EF911'}} >Settings </Title>
                     </Body>
+                    
                 </Header>
+            
                 <Content>
                     <List>
 

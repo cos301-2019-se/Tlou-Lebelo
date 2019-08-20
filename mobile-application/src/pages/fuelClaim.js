@@ -14,6 +14,7 @@ export default class CardItemBordered extends Component {
             total: "0",
             Distance: 0,
             odometer: require('../images/odometer.jpg'),
+            logo: require('../images/logo.png'),
         }
     }
 

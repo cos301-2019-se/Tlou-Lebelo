@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { 
-    Container, Header, Content, Card, CardItem, Text, Body, Left, Right, Button, Icon, Title, Form, Item, Input, Label, Picker, Image
+    Container, Header, Content, Card, CardItem, Text, Body, Left, Right, Button, Icon, Title, Form, Item, Input, Label, Picker, Image, Thumbnail
 } from "native-base";
 //import { Image, TouchableHighlight } from "react-native";
 //import myurl from '../images/receipt.jpg';
@@ -16,6 +16,7 @@ export default class CardItemBordered extends Component {
             total: "0",
             purpose: "Food",
             receipt: require('../images/receipt.jpg'),
+            logo: require('../images/logo.png'),
         }
     }
 
