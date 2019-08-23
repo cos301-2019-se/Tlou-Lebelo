@@ -7,16 +7,16 @@ Retro Rabbits current claims process is slow and tedious, requiring the employee
 The image scanner will extract the relevant information from the scanned image, do the necessary calculations and store this information. Then on the first Friday of the month, the employee will simply send all their stored claims.
 
 **SRS Document:**
-<a href="https://github.com/cos301-2019-se/Reformed-Rabbit-Requisitions-Routine/blob/master/src-old/Documentation/Demo%201.pdf" target="_blank">SRS Document</a>
+<a href="https://github.com/cos301-2019-se/Reformed-Rabbit-Requisitions-Routine/blob/master/src-old/Documentation/Demo%201.pdf" target="_blank">Old SRS</a> <a href="https://github.com/cos301-2019-se/Tlou-Lebelo/blob/master/Documentation/SRS_SpecificationRetro_Rabbits_Claim_System.pdf" target="_blank">New SRS</a>
 
 **Architectural Design and Requirements:**
 <a href="https://github.com/cos301-2019-se/Reformed-Rabbit-Requisitions-Routine/blob/master/src-old/Documentation/Demo%202.pdf" target="_blank">Architectural Design and Requirements Document</a>
 
 **User Manual:**
-<a href="src-old/Documentation/User_Manual.pdf" target="_blank">User Manual Document</a>
+<a href="https://github.com/cos301-2019-se/Tlou-Lebelo/blob/master/Documentation/User_Manual.pdf" target="_blank">User Manual Document</a>
 
 **Coding Standards:**
-<a href="src-old/Documentation/Coding_Standards.pdf" target="_blank">Coding Standards Document</a>
+<a href="https://github.com/cos301-2019-se/Tlou-Lebelo/blob/master/Documentation/Coding_Standards.pdf" target="_blank">Coding Standards Document</a>
 
 
 **Team Members**
