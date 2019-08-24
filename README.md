@@ -9,14 +9,14 @@ The image scanner will extract the relevant information from the scanned image, 
 **SRS Document:**
 <a href="https://github.com/cos301-2019-se/Reformed-Rabbit-Requisitions-Routine/blob/master/src-old/Documentation/Demo%201.pdf" target="_blank">Old SRS</a> <a href="https://github.com/cos301-2019-se/Tlou-Lebelo/blob/master/Documentation/SRS_SpecificationRetro_Rabbits_Claim_System.pdf" target="_blank">New SRS</a>
 
-**Architectural Design and Requirements:**
-<a href="https://github.com/cos301-2019-se/Reformed-Rabbit-Requisitions-Routine/blob/master/src-old/Documentation/Demo%202.pdf" target="_blank">Architectural Design and Requirements Document</a>
+**Testing Policy Document:**
+<a href="https://github.com/cos301-2019-se/Tlou-Lebelo/blob/master/Documentation/Testing_Policy.pdf" target="_blank">Here</a>
 
-**User Manual:**
-<a href="https://github.com/cos301-2019-se/Tlou-Lebelo/blob/master/Documentation/User_Manual.pdf" target="_blank">User Manual Document</a>
+**User Manual Document:**
+<a href="https://github.com/cos301-2019-se/Tlou-Lebelo/blob/master/Documentation/User_Manual.pdf" target="_blank">Here</a>
 
-**Coding Standards:**
-<a href="https://github.com/cos301-2019-se/Tlou-Lebelo/blob/master/Documentation/Coding_Standards.pdf" target="_blank">Coding Standards Document</a>
+**Coding Standards Document:**
+<a href="https://github.com/cos301-2019-se/Tlou-Lebelo/blob/master/Documentation/Coding_Standards.pdf" target="_blank">Here/a>
 
 
 **Team Members**
