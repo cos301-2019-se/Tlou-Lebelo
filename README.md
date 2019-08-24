@@ -26,7 +26,7 @@ Tlou Lebelo u15209190 <br>
 |Team Member | Details | 
 | :---         | :---         |  
 |**Tlou Lebelo**|**u15209190** |
-|**Profile** |<a href="https://github.com/Kgatishi" target="_blank">Github</a>|
+|**Profile** |<a href="https://www.linkedin.com/in/tlou-lebelo-359a30141/" target="_blank">LinkedIn</a>|
 |**Overview**|I am friendly person always willing to learn new stuff including new ideas and intelligence brought by others. |
 |**Position** |BSc Computer Science|
 |**Interests** |Big data and data mining, Intenet of Things, soccer|
